@@ -1,87 +1,92 @@
-# Análisis de Valor de Importaciones (US$ CIF): Jorle vs. IMPORT360
+# Análisis de Importaciones para el Sector Pesquero: Jorle vs. IMPORT360
 
-## Resumen del Análisis
+## 1. Resumen del Proyecto
 
-Este análisis explora el **valor de las importaciones (US$ CIF)** de **Jorle** e **IMPORT360**, con el objetivo de identificar patrones estacionales y tendencias de valor relacionadas con las temporadas de pesca en Perú.
+Este proyecto realiza un Análisis Exploratorio de Datos (EDA) sobre las importaciones de dos empresas clave, **Jorle** e **IMPORT360**, para identificar patrones estacionales y tendencias de compra vinculadas a las **temporadas de pesca en Perú** (Abril-Junio y Noviembre-Enero).
 
-### Estadísticas Descriptivas (Columnas Relevantes)
+El análisis se centra en el **valor de importación (US$ CIF)** y la **cantidad comercial** para ofrecer una visión estratégica del comportamiento de compra de cada empresa.
 
-```
---- Resumen Estadístico (Columnas Relevantes) ---
-            US$ CIF  CANTIDAD COMERCIAL    PESO NETO   PESO BRUTO
-count    329.000000          329.000000   329.000000   329.000000
-mean    3226.542097            6.479027    71.421064    79.869696
-std     5501.949219            8.057693   179.324114   208.179345
-min        0.920000            1.000000     0.010000     0.010000
-25%      280.820000            1.000000     1.450000     1.610000
-50%     1043.860000            3.000000     7.300000     8.260000
-75%     3300.770000           10.000000    39.000000    41.290000
-max    43778.550000           60.000000  1400.000000  1763.100000
-```
+**Estructura del Repositorio:**
+- **/data**: Contiene los archivos Excel originales.
+- **/src**: Contiene el script de análisis `analisis.py`.
+- **/output**: Contiene todos los resultados generados (gráficos y tablas CSV).
 
-## Análisis Comparativo por Valor (US$ CIF)
+## 2. Análisis Individual: Jorle
 
-### Comparativo Mensual de Valor de Importaciones
-![Comparativo Mensual de Valor de Importaciones (US$ CIF) entre Empresas](comparativo_valor_empresas.png)
+### 2.1. Valor de Importación (US$ CIF) por Marca
 
-## Análisis Individual: Jorle
+![Marcas por Valor - Jorle](output/Jorle_marcas_por_valor.png)
+*   **Análisis:** La marca **SAI** domina claramente en términos de valor de importación para Jorle, seguida a distancia por **PULLMASTER** y **CHAR-LYNN**. Esto sugiere una fuerte dependencia o especialización en los productos de estas marcas.
 
-### Tendencia Mensual por Valor (Jorle)
-![Tendencia Mensual de Importaciones por Valor US$ CIF (Jorle)](tendencia_valor_mensual_Jorle.png)
+### 2.2. Cantidad Comercial y Temporadas de Pesca
 
-### Top 15 Productos por Frecuencia (Jorle)
-![Top 15 Productos por Frecuencia (Jorle)](frecuencia_productos_Jorle.png)
+![Cantidad y Temporada - Jorle](output/Jorle_cantidad_temporada.png)
+*   **Análisis:** Se observa un comportamiento cíclico claro. Los picos en la cantidad comercial de importaciones coinciden directamente con los meses de **temporada de pesca** (marcados en rojo), especialmente en los períodos de Abril-Junio. Esto confirma la hipótesis de que Jorle realiza sus compras en preparación para el aumento de la demanda del sector pesquero.
 
-### Top 15 Productos por Valor US$ CIF (Jorle)
-![Top 15 Productos por Valor US$ CIF (Jorle)](valor_productos_Jorle.png)
+### 2.3. Mapa de Calor de Cantidad Comercial por Marca y Mes
 
-### Valor de Importaciones por Marca y Mes (Jorle)
-![Valor de Importaciones (US$ CIF) por Marca y Mes (Jorle)](heatmap_valor_marca_mes_Jorle.png)
+![Heatmap Cantidad - Jorle](output/Jorle_heatmap_cantidad.png)
+*   **Análisis:** El mapa de calor refuerza el patrón estacional. Marcas como **SAI** y **VELJAN** muestran una concentración de importaciones en los meses previos o durante las temporadas de pesca.
 
-### Valor de Importaciones y Temporadas de Pesca (Jorle)
-![Valor de Importaciones (US$ CIF) y Temporadas de Pesca (Jorle)](valor_importaciones_temporada_Jorle.png)
+### 2.4. Tablas de Análisis para Jorle
 
-## Análisis Individual: IMPORT360
+#### Productos con Mayor Estacionalidad (Temporada de Pesca)
+| MODELO | CANTIDAD COMERCIAL | US$ CIF |
+| :--- | :--- | :--- |
+| 'K190000250 | 20.0 | 2818.81 |
+| 0154427212 | 20.0 | 6605.11 |
+| S24-10219-0 | 20.0 | 1721.97 |
+| 'K140000250 | 18.0 | 842.97 |
+| 0054100031 | 15.0 | 32755.57 |
 
-### Tendencia Mensual por Valor (IMPORT360)
-![Tendencia Mensual de Importaciones por Valor US$ CIF (IMPORT360)](tendencia_valor_mensual_IMPORT360.png)
+#### Productos Importados en los Últimos 3 Meses
+| FECHA | MARCA | MODELO | MERCANCÍA | US$ CIF | CANTIDAD COMERCIAL | UNIDAD COMERCIAL |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 2025-09-15 | VELJAN | VM4C-043-002 | "MOTOR HIDRAULICO, VELJAN, VM4C-043-002" | 2519.41 | 3.0 | UNIDAD |
+| 2025-09-15 | VELJAN | V034-67030 | "ANILLO, VELJAN, V034-67030" | 1477.66 | 5.0 | UNIDAD |
+| 2025-09-15 | VELJAN | VS24-10228 | "CARTUCHO, VELJAN, VS24-10228" | 5516.59 | 10.0 | UNIDAD |
+| 2025-08-27 | CHAR-LYNN | 119-1043-003 | "MOTOR HYDRAULICO, CHAR-LYNN, 119-1043-003" | 9686.33 | 5.0 | UNIDAD |
+| 2025-08-20 | SAI | 0053100081 | "MOTOR HIDRAULICO, SAI, 0053100081" | 1939.88 | 1.0 | UNIDAD |
 
-### Top 15 Productos por Frecuencia (IMPORT360)
-![Top 15 Productos por Frecuencia (IMPORT360)](frecuencia_productos_IMPORT360.png)
+## 3. Análisis Individual: IMPORT360
 
-### Top 15 Productos por Valor US$ CIF (IMPORT360)
-![Top 15 Productos por Valor US$ CIF (IMPORT360)](valor_productos_IMPORT360.png)
+### 3.1. Valor de Importación (US$ CIF) por Marca
 
-### Valor de Importaciones por Marca y Mes (IMPORT360)
-![Valor de Importaciones (US$ CIF) por Marca y Mes (IMPORT360)](heatmap_valor_marca_mes_IMPORT360.png)
+![Marcas por Valor - IMPORT360](output/IMPORT360_marcas_por_valor.png)
+*   **Análisis:** A diferencia de Jorle, IMPORT360 tiene una distribución de valor más diversificada entre sus marcas principales, con **VELJAN**, **VULKAN**, y **SAI** liderando. Esto podría indicar una estrategia de menor dependencia de un único proveedor.
 
-### Valor de Importaciones y Temporadas de Pesca (IMPORT360)
-![Valor de Importaciones (US$ CIF) y Temporadas de Pesca (IMPORT360)](valor_importaciones_temporada_IMPORT360.png)
+### 3.2. Cantidad Comercial y Temporadas de Pesca
 
-## Conclusiones y Productos de Mayor Valor
+![Cantidad y Temporada - IMPORT360](output/IMPORT360_cantidad_temporada.png)
+*   **Análisis:** IMPORT360 también muestra un patrón estacional, aunque sus picos de importación parecen ocurrir ligeramente **antes** del inicio de la temporada de pesca. Esto sugiere una estrategia de aprovisionamiento más anticipada en comparación con Jorle.
 
-### Coincidencias y Patrones
-- **Patrón Estacional de Valor:** Ambas empresas incrementan significativamente el valor de sus importaciones en los meses de temporada de pesca.
-- **Productos de Alto Valor:** El análisis por valor revela que ciertos productos, aunque no se importan con alta frecuencia, representan una inversión económica considerable.
+### 3.3. Mapa de Calor de Cantidad Comercial por Marca y Mes
 
-### Top 15 Productos por Valor en Temporada de Pesca
-A continuación, los productos de mayor valor `US$ CIF` importados durante las temporadas de pesca:
-```
---- Top 15 Productos (MODELO) por Valor US$ CIF en Temporada de Pesca ---
-MODELO
-RATO-R               43778.55
-0054100031           32755.57
-3115                 23831.42
-RATO-DS 3115-2201    22190.11
-M25-3-101-3          21020.38
-0053060089           19870.22
-0053070237           12948.12
-RATO S               11056.98
-0054020017           10980.11
-S24-10228             9592.38
-119-1043              9294.37
-RATO-S                7757.90
-GM5A                  7733.48
-GS4                   7688.40
-M-12-3-97-7           7581.66
-```
+![Heatmap Cantidad - IMPORT360](output/IMPORT360_heatmap_cantidad.png)
+*   **Análisis:** El mapa de calor muestra que marcas como **VELJAN** y **VULKAN** son importadas consistentemente durante los meses previos a la temporada alta.
+
+### 3.4. Tablas de Análisis para IMPORT360
+
+#### Productos con Mayor Estacionalidad (Temporada de Pesca)
+| MODELO | CANTIDAD COMERCIAL | US$ CIF |
+| :--- | :--- | :--- |
+| 7033614000 | 32.0 | 404.16 |
+| S24-40383-0 | 26.0 | 27708.50 |
+| S24-10219-0 | 24.0 | 1302.56 |
+| 923157 | 20.0 | 579.80 |
+| VS14-29879 | 16.0 | 1245.54 |
+
+#### Productos Importados en los Últimos 3 Meses
+| FECHA | MARCA | MODELO | MERCANCÍA | US$ CIF | CANTIDAD COMERCIAL | UNIDAD COMERCIAL |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 2025-10-23 | VELJAN | VS24-40383 | "CARTUCHO, VELJAN, VS24-40383" | 9811.20 | 12.0 | UNIDAD |
+| 2025-10-23 | VELJAN | VS14-29879-0 | "KIT DE SELLOS, VELJAN, VS14-29879-0" | 2343.03 | 30.0 | UNIDAD |
+| 2025-10-10 | KOCSIS | DV-206676 | "PINON DE ARRCADOR. KOCSIS. DV-206676" | 1322.40 | 2.0 | UNIDAD |
+| 2025-09-12 | VELJAN | VR5V085 | "VALVULA DE ALIVIO, VELJAN, VR5V085" | 443.20 | 1.0 | UNIDAD |
+| 2025-09-08 | SAI | GM4 1000 | "MOTORES OLEOHIDRAULICOS, SAI, GM4 1000" | 13351.26 | 4.0 | UNIDAD |
+
+## 4. Comparación y Sugerencias
+
+*   **Estrategia de Compras:** **Jorle** parece seguir un modelo *Just-in-Time*, con compras que coinciden con el inicio de la temporada de pesca. **IMPORT360** adopta un enfoque de mayor anticipación, lo que podría darle una ventaja en disponibilidad y precios.
+*   **Dependencia de Marcas:** Jorle tiene una alta dependencia de la marca **SAI**, lo que podría ser un riesgo. IMPORT360 tiene una cartera de marcas más diversificada.
+*   **Sugerencia:** Ambas empresas podrían beneficiarse de analizar los productos estacionales de su competidor. Por ejemplo, Jorle podría explorar la viabilidad de incorporar modelos de **VELJAN** que son clave para IMPORT360, y viceversa. Este análisis cruzado podría revelar oportunidades para diversificar su oferta y capturar una mayor cuota de mercado.
