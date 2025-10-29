@@ -1,92 +1,96 @@
-# Análisis de Importaciones para el Sector Pesquero: 
+# Análisis Avanzado de Importaciones para el Sector Pesquero: Jorle vs. IMPORT360
 
 ## 1. Resumen del Proyecto
 
-Análisis Exploratorio de Datos (EDA) sobre las importaciones de dos empresas clave, **Jorle** e **IMPORT360**, para identificar patrones estacionales y tendencias de compra vinculadas a las **temporadas de pesca en Perú** (Abril-Junio y Noviembre-Enero).
+Este proyecto realiza un análisis avanzado sobre las importaciones de **Jorle** e **IMPORT360**, utilizando los datos más recientes para identificar patrones de compra y productos estacionales vinculados a las **temporadas de pesca en Perú** (Abril-Junio y Noviembre-Enero).
 
-El análisis se centra en el **valor de importación (US$ CIF)** y la **cantidad comercial** para ofrecer una visión estratégica del comportamiento de compra de cada empresa.
+Se ha implementado un **algoritmo de detección de estacionalidad** para identificar con mayor precisión los productos cuya demanda aumenta significativamente durante la temporada de pesca.
 
 **Estructura del Repositorio:**
-- **/data**: Contiene los archivos Excel originales.
+- **/data**: Contiene los archivos Excel actualizados.
 - **/src**: Contiene el script de análisis `analisis.py`.
-- **/output**: Contiene todos los resultados generados (gráficos y tablas CSV).
+- **/output**: Contiene todos los resultados generados.
 
 ## 2. Análisis Individual: Jorle
 
 ### 2.1. Valor de Importación (US$ CIF) por Marca
 
 ![Marcas por Valor - Jorle](output/Jorle_marcas_por_valor.png)
-*   **Análisis:** La marca **SAI** domina claramente en términos de valor de importación para Jorle, seguida a distancia por **PULLMASTER** y **CHAR-LYNN**. Esto sugiere una fuerte dependencia o especialización en los productos de estas marcas.
+*   **Análisis:** Con los datos actualizados, **SAI** mantiene su liderazgo absoluto en el valor de las importaciones, reforzando la idea de una fuerte especialización. **PULLMASTER** y **CHAR-LYNN** le siguen como marcas secundarias clave.
 
 ### 2.2. Cantidad Comercial y Temporadas de Pesca
 
 ![Cantidad y Temporada - Jorle](output/Jorle_cantidad_temporada.png)
-*   **Análisis:** Se observa un comportamiento cíclico claro. Los picos en la cantidad comercial de importaciones coinciden directamente con los meses de **temporada de pesca** (marcados en rojo), especialmente en los períodos de Abril-Junio. Esto confirma la hipótesis de que Jorle realiza sus compras en preparación para el aumento de la demanda del sector pesquero.
+*   **Análisis:** El comportamiento cíclico se mantiene. Los picos de compra de **cantidad comercial** siguen alineados con las temporadas de pesca, validando que la estrategia de compra de Jorle está directamente impulsada por la demanda del sector.
 
 ### 2.3. Mapa de Calor de Cantidad Comercial por Marca y Mes
 
 ![Heatmap Cantidad - Jorle](output/Jorle_heatmap_cantidad.png)
 *   **Análisis:** El mapa de calor refuerza el patrón estacional. Marcas como **SAI** y **VELJAN** muestran una concentración de importaciones en los meses previos o durante las temporadas de pesca.
 
-### 2.4. Tablas de Análisis para Jorle
+### 2.4. Productos con Mayor Estacionalidad (Detectados por Algoritmo)
 
-#### Productos con Mayor Estacionalidad (Temporada de Pesca)
-| MODELO | CANTIDAD COMERCIAL | US$ CIF |
-| :--- | :--- | :--- |
-| 'K190000250 | 20.0 | 2818.81 |
-| 0154427212 | 20.0 | 6605.11 |
-| S24-10219-0 | 20.0 | 1721.97 |
-| 'K140000250 | 18.0 | 842.97 |
-| 0054100031 | 15.0 | 32755.57 |
+La siguiente tabla muestra los productos con un alto **índice de estacionalidad**, es decir, aquellos cuya importación es significativamente mayor durante la temporada de pesca.
 
-#### Productos Importados en los Últimos 3 Meses
-| FECHA | MARCA | MODELO | MERCANCÍA | US$ CIF | CANTIDAD COMERCIAL | UNIDAD COMERCIAL |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 2025-09-15 | VELJAN | VM4C-043-002 | "MOTOR HIDRAULICO, VELJAN, VM4C-043-002" | 2519.41 | 3.0 | UNIDAD |
-| 2025-09-15 | VELJAN | V034-67030 | "ANILLO, VELJAN, V034-67030" | 1477.66 | 5.0 | UNIDAD |
-| 2025-09-15 | VELJAN | VS24-10228 | "CARTUCHO, VELJAN, VS24-10228" | 5516.59 | 10.0 | UNIDAD |
-| 2025-08-27 | CHAR-LYNN | 119-1043-003 | "MOTOR HYDRAULICO, CHAR-LYNN, 119-1043-003" | 9686.33 | 5.0 | UNIDAD |
-| 2025-08-20 | SAI | 0053100081 | "MOTOR HIDRAULICO, SAI, 0053100081" | 1939.88 | 1.0 | UNIDAD |
+| MODELO | MARCA | MERCANCÍA | INDICE DE ESTACIONALIDAD |
+| :--- | :--- | :--- | :--- |
+| 'K190000250 | SAI | "DISCO DE BRONCE, SAI, K190000250" | 3.33 |
+| 0154427212 | SAI | "KIT DE GUARNIZION, SAI, 0154427212"| 3.33 |
+| S24-10219-0| DENISON | "KIT DE SELLOS, DENISON, S24-10219-0"| 3.33 |
+| 15373 5066 | DENISON | "JUEGO DE SELLOS, DENISON, 15373 5066"| 2.50 |
+| JH MMDBR STD-A1| HATTELAND | "SOPORTE PARA PANTALLA, HATTELAND, JH MMDBR STD-A1" | 2.50 |
+
+### 2.5. Productos Importados en los Últimos 3 Meses
+
+| FECHA | MARCA | MODELO | MERCANCÍA |
+| :--- | :--- | :--- | :--- |
+| 2025-09-15 | VELJAN | VM4C-043-002 | "MOTOR HIDRAULICO, VELJAN, VM4C-043-002" |
+| 2025-09-15 | VELJAN | V034-67030 | "ANILLO, VELJAN, V034-67030" |
+| 2025-08-27 | CHAR-LYNN | 119-1043-003| "MOTOR HYDRAULICO, CHAR-LYNN, 119-1043-003" |
+| 2025-08-20 | SAI | 54100031 | "MOTOR HIDRAULICO, SAI, 54100031" |
 
 ## 3. Análisis Individual: IMPORT360
 
 ### 3.1. Valor de Importación (US$ CIF) por Marca
 
 ![Marcas por Valor - IMPORT360](output/IMPORT360_marcas_por_valor.png)
-*   **Análisis:** A diferencia de Jorle, IMPORT360 tiene una distribución de valor más diversificada entre sus marcas principales, con **VELJAN**, **VULKAN**, y **SAI** liderando. Esto podría indicar una estrategia de menor dependencia de un único proveedor.
+*   **Análisis:** La diversificación sigue siendo la estrategia de IMPORT360. **VELJAN**, **VULKAN**, y **SAI** se reparten el liderazgo en valor, mostrando un portafolio de proveedores más equilibrado que el de Jorle.
 
 ### 3.2. Cantidad Comercial y Temporadas de Pesca
 
 ![Cantidad y Temporada - IMPORT360](output/IMPORT360_cantidad_temporada.png)
-*   **Análisis:** IMPORT360 también muestra un patrón estacional, aunque sus picos de importación parecen ocurrir ligeramente **antes** del inicio de la temporada de pesca. Esto sugiere una estrategia de aprovisionamiento más anticipada en comparación con Jorle.
+*   **Análisis:** El patrón de compra anticipada se confirma. IMPORT360 aumenta sus importaciones en los meses **previos** al inicio de la temporada alta, lo que podría permitirles asegurar stock y negociar mejores precios.
 
 ### 3.3. Mapa de Calor de Cantidad Comercial por Marca y Mes
 
 ![Heatmap Cantidad - IMPORT360](output/IMPORT360_heatmap_cantidad.png)
 *   **Análisis:** El mapa de calor muestra que marcas como **VELJAN** y **VULKAN** son importadas consistentemente durante los meses previos a la temporada alta.
 
-### 3.4. Tablas de Análisis para IMPORT360
+### 3.4. Productos con Mayor Estacionalidad (Detectados por Algoritmo)
 
-#### Productos con Mayor Estacionalidad (Temporada de Pesca)
-| MODELO | CANTIDAD COMERCIAL | US$ CIF |
-| :--- | :--- | :--- |
-| 7033614000 | 32.0 | 404.16 |
-| S24-40383-0 | 26.0 | 27708.50 |
-| S24-10219-0 | 24.0 | 1302.56 |
-| 923157 | 20.0 | 579.80 |
-| VS14-29879 | 16.0 | 1245.54 |
+| MODELO | MARCA | MERCANCÍA | INDICE DE ESTACIONALIDAD |
+| :--- | :--- | :--- | :--- |
+| 7033614000 | VULKAN | "ARANDELAS, VULKAN, S/M" | 5.33 |
+| S24-40383-0| METARIS | "CARTUCHO, METARIS, S24-40383-0" | 4.33 |
+| S24-10219-0| METARIS | "SELLOS, METARIS, S24-10219-0" | 4.00 |
+| 923157 | METARIS | "SELLOS, METARIS, 923157" | 3.33 |
+| VS14-29879 | VELJAN | "KIT DE SELLOS, VELJAN, VS14-29879" | 2.67 |
 
-#### Productos Importados en los Últimos 3 Meses
-| FECHA | MARCA | MODELO | MERCANCÍA | US$ CIF | CANTIDAD COMERCIAL | UNIDAD COMERCIAL |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 2025-10-23 | VELJAN | VS24-40383 | "CARTUCHO, VELJAN, VS24-40383" | 9811.20 | 12.0 | UNIDAD |
-| 2025-10-23 | VELJAN | VS14-29879-0 | "KIT DE SELLOS, VELJAN, VS14-29879-0" | 2343.03 | 30.0 | UNIDAD |
-| 2025-10-10 | KOCSIS | DV-206676 | "PINON DE ARRCADOR. KOCSIS. DV-206676" | 1322.40 | 2.0 | UNIDAD |
-| 2025-09-12 | VELJAN | VR5V085 | "VALVULA DE ALIVIO, VELJAN, VR5V085" | 443.20 | 1.0 | UNIDAD |
-| 2025-09-08 | SAI | GM4 1000 | "MOTORES OLEOHIDRAULICOS, SAI, GM4 1000" | 13351.26 | 4.0 | UNIDAD |
+### 3.5. Productos Importados en los Últimos 3 Meses
 
-## 4. Comparación y Sugerencias
+| FECHA | MARCA | MODELO | MERCANCÍA |
+| :--- | :--- | :--- | :--- |
+| 2025-10-23 | VELJAN | VS24-40383 | "CARTUCHO, VELJAN, VS24-40383" |
+| 2025-10-23 | VELJAN | VS14-29879-0| "KIT DE SELLOS, VELJAN, VS14-29879-0"|
+| 2025-10-10 | KOCSIS | DV-206676 | "PINON DE ARRCADOR. KOCSIS. DV-206676" |
+| 2025-09-08 | SAI | GM4 1000 | "MOTORES OLEOHIDRAULICOS, SAI, GM4 1000" |
 
-*   **Estrategia de Compras:** **Jorle** parece seguir un modelo *Just-in-Time*, con compras que coinciden con el inicio de la temporada de pesca. **IMPORT360** adopta un enfoque de mayor anticipación, lo que podría darle una ventaja en disponibilidad y precios.
-*   **Dependencia de Marcas:** Jorle tiene una alta dependencia de la marca **SAI**, lo que podría ser un riesgo. IMPORT360 tiene una cartera de marcas más diversificada.
-*   **Sugerencia:** Ambas empresas podrían beneficiarse de analizar los productos estacionales de su competidor. Por ejemplo, Jorle podría explorar la viabilidad de incorporar modelos de **VELJAN** que son clave para IMPORT360, y viceversa. Este análisis cruzado podría revelar oportunidades para diversificar su oferta y capturar una mayor cuota de mercado.
+## 4. Conclusiones y Sugerencias Estratégicas
+
+*   **Estrategias de Aprovisionamiento Opuestas:** Los datos confirman que **Jorle** opera con una estrategia reactiva o *Just-in-Time*, mientras que **IMPORT360** es proactiva y se anticipa a la demanda. La estrategia de IMPORT360 parece más robusta ante posibles retrasos en la cadena de suministro.
+*   **Inteligencia de Mercado:** El algoritmo de estacionalidad ha identificado productos clave que no son obvios a simple vista. Por ejemplo, el modelo **'K190000250' de SAI** es crucial para Jorle, mientras que las **arandelas VULKAN** lo son para IMPORT360.
+*   **Sugerencia Estratégica:**
+    *   **Para Jorle:** Deberían considerar diversificar su cartera de proveedores para reducir la dependencia de **SAI**. Analizar los productos estacionales de **METARIS** y **VULKAN**, que son clave para IMPORT360, podría abrir nuevas líneas de negocio.
+    *   **Para IMPORT360:** Podrían optimizar su inventario analizando los productos de alta frecuencia de Jorle. Si bien su estrategia de anticipación es buena, podrían estar perdiendo oportunidades en productos de rotación más rápida durante la temporada alta.
+
+Este análisis avanzado proporciona una base sólida para la toma de decisiones estratégicas, permitiendo a ambas empresas optimizar sus compras, diversificar su oferta y responder mejor a la demanda del sector pesquero.
