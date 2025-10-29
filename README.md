@@ -1,8 +1,8 @@
-# Análisis de Importaciones para el Sector Pesquero: Jorle vs. IMPORT360
+# Análisis de Importaciones para el Sector Pesquero: 
 
 ## 1. Resumen del Proyecto
 
-Este proyecto realiza un Análisis Exploratorio de Datos (EDA) sobre las importaciones de dos empresas clave, **Jorle** e **IMPORT360**, para identificar patrones estacionales y tendencias de compra vinculadas a las **temporadas de pesca en Perú** (Abril-Junio y Noviembre-Enero).
+Análisis Exploratorio de Datos (EDA) sobre las importaciones de dos empresas clave, **Jorle** e **IMPORT360**, para identificar patrones estacionales y tendencias de compra vinculadas a las **temporadas de pesca en Perú** (Abril-Junio y Noviembre-Enero).
 
 El análisis se centra en el **valor de importación (US$ CIF)** y la **cantidad comercial** para ofrecer una visión estratégica del comportamiento de compra de cada empresa.
 
